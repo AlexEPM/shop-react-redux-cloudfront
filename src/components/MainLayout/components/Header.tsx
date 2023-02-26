@@ -33,7 +33,7 @@ export default function Header() {
             underline="none"
             to="/"
           >
-            Pharmaceutical Store!
+            Grocery store!
           </Link>
         </Typography>
 
