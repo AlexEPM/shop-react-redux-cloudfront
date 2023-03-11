@@ -1,7 +1,7 @@
 import { OrderStatus } from "~/constants/order";
 import { CartItem } from "~/models/CartItem";
 import { Order } from "~/models/Order";
-import { AvailableProduct, Product } from "~/models/Product";
+import { Product } from "~/models/Product";
 
 export const products: Product[] = [
   {
@@ -10,6 +10,7 @@ export const products: Product[] = [
     price: 24,
     title: "ProductOne",
     img: "img_1",
+    count: 5,
   },
   {
     description: "Short Product Description7",
@@ -17,6 +18,7 @@ export const products: Product[] = [
     price: 15,
     title: "ProductTitle",
     img: "img_7",
+    count: 7,
   },
   {
     description: "Short Product Description2",
@@ -24,6 +26,7 @@ export const products: Product[] = [
     price: 23,
     title: "Product",
     img: "img_2",
+    count: 45,
   },
   {
     description: "Short Product Description4",
@@ -31,6 +34,7 @@ export const products: Product[] = [
     price: 15,
     title: "ProductTest",
     img: "img_4",
+    count: 1,
   },
   {
     description: "Short Product Descriptio1",
@@ -38,6 +42,7 @@ export const products: Product[] = [
     price: 23,
     title: "Product2",
     img: "img_2",
+    count: 8,
   },
   {
     description: "Short Product Description7",
@@ -45,12 +50,14 @@ export const products: Product[] = [
     price: 15,
     title: "ProductName",
     img: "img_7",
+    count: 6,
   },
 ];
 
-export const availableProducts: AvailableProduct[] = products.map(
-  (product, index) => ({ ...product, count: index + 1 })
-);
+export const availableProducts: Product[] = products.map((product, index) => ({
+  ...product,
+  count: index + 1,
+}));
 
 export const cart: CartItem[] = [
   {
@@ -60,6 +67,7 @@ export const cart: CartItem[] = [
       price: 24,
       title: "ProductOne",
       img: "img_1",
+      count: 2,
     },
     count: 2,
   },
@@ -70,6 +78,7 @@ export const cart: CartItem[] = [
       price: 15,
       title: "ProductName",
       img: "img_7",
+      count: 5,
     },
     count: 5,
   },
