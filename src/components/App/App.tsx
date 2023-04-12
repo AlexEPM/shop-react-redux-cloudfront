@@ -6,11 +6,36 @@ import PageOrder from "~/components/pages/PageOrder/PageOrder";
 import PageProductImport from "~/components/pages/admin/PageProductImport/PageProductImport";
 import PageCart from "~/components/pages/PageCart/PageCart";
 import PageProducts from "~/components/pages/PageProducts/PageProducts";
-import { Typography } from "@mui/material";
+import { Alert, AlertTitle, Typography } from "@mui/material";
+import React, { useState } from "react";
+import axios from "axios";
+
+const authenticationErrors = [401, 403];
 
 function App() {
+  const [authenticationError, setAuthenticationError] = useState("");
+
+  axios.interceptors.response.use(
+    (response) => {
+      setAuthenticationError("");
+      return response;
+    },
+    (error) => {
+      if (authenticationErrors.includes(error.response.status)) {
+        setAuthenticationError(error.message);
+      }
+      return Promise.reject(error.message);
+    }
+  );
+
   return (
     <MainLayout>
+      {authenticationError && (
+        <Alert severity="error" onClose={() => setAuthenticationError("")}>
+          <AlertTitle>Error</AlertTitle>
+          {authenticationError}
+        </Alert>
+      )}
       <Routes>
         <Route path="/" element={<PageProducts />} />
         <Route path="cart" element={<PageCart />} />
